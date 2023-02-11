@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+
+поставить перед css файлом*/
+font-family: 'Roboto', sans-serif;
+color: #000;
+background: #F5F5F5;
+padding: 0;
+margin: 0;
+opacity: 10;
+}
+
+.container {
+  width: 1072px;
+  margin: 0 auto;
+
+  
+ 
+  
+
+}
+
+
+ul,li,h1,h2{
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  /*Убрать маркеры со списков*/
+  list-style-type: none;
+}
+
+h1{
+ font-size: 44px;
+ 
+ text-align: center;
+
+ 
+}
+
+.btn{
+  /*Размеры кнопки*/
+  width: 300px;
+  height: 54px;
+
+  text-decoration: none;
+
+  /*Граница вокруг кнопки*/
+  border: 1px solid #000000;
+  border-radius: 500px;
+
+  /*Расстояние от текста до границ кнопки*/
+  padding: 14px 30px;
+
+  /*Сделать текст в верхнем регистре*/
+  /*text-transform: uppercase;*/
+  color:  #000000;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+
+  /*Выравнивание текста */
+  text-align: left;
+  
+
+/*Задаем свойства блоков ссылками (кнопками)*/
+display: block;
+
+/*Оттолкнем нижние кнопки от верхних*/
+margin-bottom: 25px;
+margin-right: 20px;
+margin-left: 20px;
+
+/*Фон кнопки*/
+background: #FCFDFC;
+opacity: 0.9;
+
+/*Тень для кнопки*/
+  box-shadow: 3px 5px 15px -5px rgba(0, 0, 0, 1) ;
+
+}
+
+.buttons{
+  /*Свойства для родителя блочных элементов для выравнивания*/
+  display: flex;
+
+  /*https://developer.mozilla.org/ru/docs/Web/CSS/justify-content*/
+  /*Ширина зоны с кнопками*/
+  width: 1014px;
+  /*Растянуть контент по краям*/
+  justify-content: center;
+
+  /*Отступ от заголовка до кнопок*/
+  margin-top: 40px;
+
+
+  
+}
+
+.btn2{
+  /*Размеры кнопки*/
+  width: 300px;
+  height: 70px;
+
+
+
+  text-decoration: none;
+
+  /*Граница вокруг кнопки*/
+  border: 1px solid #FF3300;
+  border-radius: 500px;
+
+  /*Расстояние от текста до границ кнопки*/
+  padding: 24px 0;
+
+  /*Сделать текст в верхнем регистре*/
+  text-transform: uppercase;
+  color:  #FF3300;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+
+  /*Выравнивание текста */
+  text-align: center;
+  
+
+/*Задаем свойства блоков ссылками (кнопками)*/
+display: block;
+
+/*Оттолкнем нижние кнопки от верхних*/
+margin-bottom: 25px;
+
+/*Фон кнопки*/
+background: #FCFDFC;
+opacity: 0.9;
+
+/*Тень для кнопки*/
+  box-shadow: 3px 5px 5px rgba(255, 51, 0, 0.2) ;
+
+  
+  
+
+
+}
+
+.buttons2{
+
+  display: flex;
+
+  /*https://developer.mozilla.org/ru/docs/Web/CSS/justify-content*/
+  /*Ширина зоны с кнопками*/
+  width: 1014px;
+  /*Растянуть контент по краям*/
+  justify-content: center;
+
+  margin-top: 40px;
+
+  
+
+
+  
+
+
+  
+}
+
+h2{
+
+font-size:  20px;
+text-align: center;
+margin-top: 40px;
+}
+
+a{
+  /*Убрать стиль ссылок*/
+  text-decoration: none;
+  color: black;
+}
+/*Блок*/
+
+.nav, .menu{
+  display: flex;
+
+  /*Горизонтальное выравнивание*/
+  align-items: center;
+}
+.menu{
+  /*Растянуть блок*/
+  width: 100%;
+  /*Растянуть в разные стороны*/
+  justify-content: start;
+
+
+
+
+}
+
+img{
+  margin-right: 33px;
+}
+
+/*Блочные и строчные элементы
+div и большинство элементов являются блочными и стремяться растянуться на всю ширину экрана
+a, img, span - строчные элементы и они не стремяться в одного знанять всю линию ширины экрана, а растягиваются под ширину контента
+Блочные элементы имеют свойство display: inline
+Строчные элементы имеют свойство display: block*/
+
+.nav{
+  margin-top: 18px;
+  margin-bottom: 29px;
+
+}
+
+/*Активация при наведении на ссылку*/
+.menu__item__active:hover{
+  border-bottom: 2px solid #2575FC;
+  color: #2575FC;
+}
+
+/*Активация при наведении на кнопку*/
+.btn:hover{
+  background: grey;
+  opacity: 0.9;
+  color: #fff;
+
+  box-shadow: 3px 5px 10px rgba(255,51,0, 0.2); ;
+
+}
+
+h2{
+  margin-top: 40px;
+}
+
+.reg1{
+  margin-right: 44px;
+}
+
+.reg2{
+  margin-right: 700px;
+}
+
+.btn2:hover{
+  background: #FF3300;
+  opacity: 0.9;
+  color: #fff;
+
+  box-shadow: 3px 5px 10px rgba(255,51,0, 0.2); ;
+
+}
+
+.img2{
+  
+  
+  
+}
+
+/*.picture {
+  width: 1072px;
+  margin: 0 auto;
+  background-image: url('../img/square_pattern 1.png');
+  background-repeat: no-repeat;
+  background-position: 8% 80%;*/
+.picture{
+
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  top:  94px;
+  left: 204px;
+  opacity: 0.4;
+}
+
+.pict{
+position: absolute;
+width: 152px;
+height: 139px;
+left: 964px;
+top: 104px;
+}
+
+.down{
+  margin-top: 0px;
+  font-weight: bold;
+  color: red;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 105px;
+
+}
+  
+
+
+
+
+
+
+
+

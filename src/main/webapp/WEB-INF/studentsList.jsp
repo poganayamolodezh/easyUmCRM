@@ -63,7 +63,9 @@
       <a href="#" class="btn">
         Посмотреть успеваемость выбранных студентов
       </a>
-      <a href="#" class="btn">Модифицировать</a>
+<%--      <a href="#" class="btn">Модифицировать</a>--%>
+      <input type="submit" value="Модифицировать" class= "btn" onclick="modifyStudent()">
+
     </div>
     <div>
       <a href="/student-create"  class="btn">Создать студента</a>
@@ -119,8 +121,13 @@
 <form action="/student-delete" method="post" id="formDelete">
   <input type="hidden" value="" name="hiddenDelete" id="hiddenDelete">
 </form>
-
+<%--Форма для модификации студента--%>
+<form action="/student-modify" method="get" id="formModify">
+  <input type="hidden" value="" name="hiddenModify" id="hiddenModify">
+</form>
 </body>
 <%--Подключаем JS--%>
 <script src="../resources/js/Functions.js"></script>
 </html>
+
+

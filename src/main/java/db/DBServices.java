@@ -136,6 +136,45 @@ public class DBServices implements IDBServices{
 
     @Override
     public Student getStudentById(String id) {
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.student where status = '1' and id ="+id+"");
+
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+                //Создать пустой объект
+                Student student = new Student();
+
+                //Достать значение колонки id из SQL
+                student.setId(rs.getInt("id"));
+
+                //Достать значение колонки surname из SQL
+                student.setSurname(rs.getString("surname"));
+
+                //Достать значение колонки name из SQL
+                student.setName(rs.getString("name"));
+
+                //Достать значение колонки group из SQL
+                student.setGroup(rs.getString("group"));
+
+                //Достать значение колонки date из SQL
+                student.setDate(rs.getDate("date"));
+
+                //Возвращаем студента
+                return student;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
