@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+
+поставить перед css файлом*/
+font-family: 'Roboto', sans-serif;
+color: #000;
+background: #F5F5F5;
+padding: 0;
+margin: 0;
+opacity: 10;
+}
+
+.container {
+  width: 1072px;
+  margin: 0 auto;
+  
+ 
+  
+
+}
+
+
+ul,li,h1,h2{
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  /*Убрать маркеры со списков*/
+  list-style-type: none;
+}
+
+h1{
+ font-size: 44px;
+ 
+ text-align: center;
+
+ margin-top: 29px;
+
+ 
+}
+
+.btn{
+  /*Размеры кнопки*/
+  width: 488px;
+  height: 54px;
+
+  text-decoration: none;
+
+  /*Граница вокруг кнопки*/
+  border: 1px solid red;
+  border-radius: 500px;
+
+  /*Расстояние от текста до границ кнопки*/
+  padding: 14px 30px;
+
+  /*Сделать текст в верхнем регистре*/
+  text-transform: uppercase;
+  color:  red;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+
+  /*Выравнивание текста */
+  text-align: center;
+  
+
+/*Задаем свойства блоков ссылками (кнопками)*/
+
+
+/*Оттолкнем нижние кнопки от верхних*/
+margin-bottom: 25px;
+/*margin-right: 20px;*/
+margin-left: 40px;
+  
+/*Фон кнопки*/
+background: #FCFDFC;
+opacity: 0.9;
+
+/*Тень для кнопки*/
+  box-shadow: 3px 5px 15px -5px red ;
+
+}
+
+.buttons{
+  /*Свойства для родителя блочных элементов для выравнивания*/
+  display: flex;
+
+  /*https://developer.mozilla.org/ru/docs/Web/CSS/justify-content*/
+  /*Ширина зоны с кнопками*/
+  width: 512px;
+  /*Растянуть контент по краям*/
+  justify-content: space-between;
+  /*Поставить кнопки колонной*/
+  flex-direction: column;
+  /*Отступ от заголовка до кнопок*/
+  margin-top: 210px;
+
+
+  
+}
+
+.nav, .menu{
+  margin-top: 18px;
+  display: flex;
+
+  /*Горизонтальное выравнивание*/
+  align-items: center;
+}
+.menu{
+  /*Растянуть блок*/
+  width: 100%;
+  /*Растянуть в разные стороны*/
+  justify-content: space-between;
+
+
+} 
+
+img{
+  margin-right: 33px;
+}
+
+a{
+  /*Убрать стиль ссылок*/
+  text-decoration: none;
+  color: black;
+}
+
+.menu__item__active:hover{
+  border-bottom: 2px solid #2575FC;
+  color: #2575FC;
+}
+
+/*Активация при наведении на кнопку*/
+.btn:hover{
+  background: red;
+  opacity: 0.9;
+  color: #fff;
+
+  box-shadow: 3px 5px 10px rgba(255,51,0, 0.2); ;
+
+}
+
+.btn2:hover{
+  background: red;
+  opacity: 0.9;
+  color: #fff;
+
+  box-shadow: 3px 5px 10px rgba(255,51,0, 0.2); ;
+
+}
+
+
+th, td {
+  /*Обводка ячеек*/
+  border: 1px solid #2575FC;;
+}
+
+table{
+/*Убрать промежутки между обводками*/
+  border-collapse: collapse;
+
+  /*Растягиваем таблицу на всю ширину блока*/
+  width: 50%;
+
+  /*Тень таблицы*/
+  box-shadow: 3px 5px 5px rgba(34,102,218, 0.5);
+
+  /*Оттолкнемся от заголовка*/
+  margin-top: 15px;
+
+  /*Отступ вниз*/
+  margin-bottom: 105px;
+
+}
+
+thead{
+  background: #2575FC;
+  color: #fff;
+  text-align: left;
+  
+
+}
+
+tbody{
+  background: #F0F2F5;;
+}
+
+.td{
+  /*Задаем отступы в ячейках*/
+ padding: 37px 0 15px 15px;
+ font-size: 18px;
+}
+
+.td-ch{
+  /*Ширина ячейки с чек боксом*/
+  width: 100px;
+
+
+}
+
+
+.text{
+  display: inline;
+  padding-right: 60px;
+}
+
+#selectID{
+  /*padding-right: 40px;*/
+  font-size: 16px;
+}
+
+.spisok{
+  display: inline;;
+  margin-right: 18px;
+
+}
+
+.knp{
+  display: inline;
+  margin-left: 0px;
+}
+
+.btn2{
+  width: 145px;
+  height: 39 px;
+
+  text-decoration: none;
+
+  /*Граница вокруг кнопки*/
+  border: 1px solid #FF3300;
+  border-radius: 500px;
+
+  /*Расстояние от текста до границ кнопки*/
+  padding: 2px 28px;
+
+  /*Сделать текст в верхнем регистре*/
+  text-transform: uppercase;
+  color:  #FF3300;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+
+  /*Выравнивание текста */
+  text-align: center;
+  
+
+/*Задаем свойства блоков ссылками (кнопками)*/
+
+
+/*Оттолкнем нижние кнопки от верхних*/
+
+
+/*Фон кнопки*/
+background: #FCFDFC;
+opacity: 0.9;
+
+/*Тень для кнопки*/
+  box-shadow: 3px 5px 5px rgba(255, 51, 0, 0.2) ;
+
+}
+
+.btn:hover{
+  background: red;
+  opacity: 0.9;
+  color: #fff;
+
+  box-shadow: 3px 5px 10px rgba(255,51,0, 0.2); ;
+
+}
+
+.content{
+  margin-top: 40px;
+  font-size: 18px;
+  margin-bottom: 15px;
+
+
+}
+
+.text0{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

@@ -50,7 +50,14 @@
         </li>
 
         <li>
-          <a href="#" class="menu__item menu__item__active">LogOut</a>
+          <c:choose>
+            <c:when test="${isLogin eq true}">
+              <a href="/logout" class="menu__item menu__item__active reg3">LogOut</a>
+            </c:when>
+            <c:otherwise>
+              <a href="/login" class="menu__item menu__item__active reg3">LogIn</a>
+            </c:otherwise>
+          </c:choose>
         </li>
       </ul>
     </nav>
@@ -64,13 +71,21 @@
         Посмотреть успеваемость выбранных студентов
       </a>
 <%--      <a href="#" class="btn">Модифицировать</a>--%>
-      <input type="submit" value="Модифицировать" class= "btn" onclick="modifyStudent()">
+      <c:if test="${role eq 1}">
+        <input type="submit" value="Модифицировать" class= "btn" onclick="modifyStudent()">
+      </c:if>
+
 
     </div>
     <div>
-      <a href="/student-create"  class="btn">Создать студента</a>
+      <c:if test="${role eq 1}">
+        <a href="/student-create"  class="btn">Создать студента</a>
+      </c:if>
+
 <%--      <a href="#" class="btn">Удалить студента</a>--%>
-      <input type="submit" value="Удалить студента" class="btn" onclick="deleteStudents()">
+      <c:if test="${role eq 1}">
+        <input type="submit" value="Удалить студента" class="btn" onclick="deleteStudents()">
+      </c:if>
     </div>
 
   </div>

@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ru">
 <meta charset="UTF-8">
@@ -24,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../resources/css/css_createStudent.css">
+    <link rel="stylesheet" href="../resources/css/css_createStudent.css?ver.2">
 
 <%--    Подключаем JS   --%>
 </head>
@@ -49,7 +50,14 @@
                 </li>
 
                 <li>
-                    <a href="#" class="menu__item menu__item__active reg3">LogOut</a>
+                    <c:choose>
+                        <c:when test="${isLogin eq true}">
+                            <a href="/logout" class="menu__item menu__item__active reg3">LogOut</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/login" class="menu__item menu__item__active reg3">LogIn</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </ul>
         </nav>
@@ -61,14 +69,14 @@
 
 
     <div>
-        <form action="student-create" method="post" accept-charset="US-ASCII">
+        <form action="student-create" method="post">
             <div class="container buttons">
-            <input type="text" class="btn" placeholder="Фамилия" name = "surname">
-            <input type="text"  class="btn" placeholder="Имя" name = "name">
+            <input type="text" class="btn" placeholder="Фамилия" name = "surname"  autocomplete="off">
+            <input type="text"  class="btn" placeholder="Имя" name = "name" autocomplete="off">
             </div>
         <div class="container button3">
-            <input type="text" class="btn" placeholder="Группа" name = "group">
-            <input type="text" class="btn" placeholder="Дата поступления" name = "date" id="datepicker">
+            <input type="text" class="btn" placeholder="Группа" name = "group"  autocomplete="off">
+            <input type="text" class="btn" placeholder="Дата поступления" name = "date" id="datepicker" autocomplete="off">
             <%--Из-за формата дат часто возникают ошибки записи в БД для корректной работы необходимо
             Подключить js и использовать библиотеки Jquery--%>
 
@@ -78,6 +86,10 @@
             <input type="submit" value="Создать" class="btn w300"/>
         </div>
         </form>
+<%--        Вывести сообщение по ошибке незаполенных полей --%>
+        <c:if test="${Error eq 1}">
+            <p class="error-text">Не все поля заполнены</p>
+        </c:if>
     </div>
 
 

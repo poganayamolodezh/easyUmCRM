@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,14 @@
                 </li>
 
                 <li>
-                    <a href="#" class="menu__item menu__item__active reg3">LogOut</a>
+                    <c:choose>
+                        <c:when test="${isLogin eq true}">
+                            <a href="/logout" class="menu__item menu__item__active reg3">LogOut</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/login" class="menu__item menu__item__active reg3">LogIn</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </ul>
         </nav>
@@ -75,23 +83,25 @@
 <%--        <a href="#" class="btn2">Создать</a>--%>
 
 <%--    </div>--%>
-    <form action="#">
+    <form action="/student-modify" method="post" >
+<%--        Нужно передавать id строки которую исправляем--%>
+        <input type="hidden" name="id" value="${student.id}">
         <div class="container buttons fields mt30">
-            <input type="text" class="btn" placeholder="Фамилия">
-            <input type="text" class="btn" placeholder="Имя">
+            <input type="text" class="btn" placeholder="Фамилия" value="${student.surname}" name="surname">
+            <input type="text" class="btn" placeholder="Имя" value="${student.surname}" name="name">
         </div>
         <div class="container buttons fields mt30">
-            <input type="text" class="btn" placeholder="Группа">
-            <input type="date" class="btn" placeholder="Дата поступления" id="datepicker" autocomplete="off">
+            <input type="text" class="btn" placeholder="Группа" value="${student.group}" name="group">
+            <input type="text" class="btn" placeholder="Дата поступления" id="datepicker" autocomplete="off" value="<f:formatDate value="${student.date}" pattern="dd/MM/yyyy"/>" name="date">
         </div>
-    </form>
-</div>
+
+
     <div class="container buttons2">
 <%--                <a href="#" class="btn2">Применить</a>--%>
     <input type="submit" value="Применить" class="btn2"/>
             </div>
-
-
+    </form>
+    </div>
     <p class="down">Поля не должны быть пустыми!</p>
 
 
@@ -102,12 +112,18 @@
 <%-- Подключаем JS   --%>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<%--<script>--%>
+<%--    $( function() {--%>
+<%--        $( "#datepicker" ).datepicker({--%>
+<%--            showOtherMonths: true,--%>
+<%--            selectOtherMonths: true--%>
+<%--        });--%>
+<%--    } );--%>
+<%--</script>--%>
 <script>
     $( function() {
-        $( "#datepicker" ).datepicker({
-            showOtherMonths: true,
-            selectOtherMonths: true
-        });
-    } );
+        $("#datepicker").datepicker({dateFormat: 'dd/mm/yy' });
+    });
+
 </script>
 </html>

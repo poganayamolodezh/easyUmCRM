@@ -179,7 +179,7 @@ h1{
 
 
 
-    margin-bottom: 105px;
+    margin-bottom: 0px;
 
 
 
@@ -285,4 +285,10 @@ h2{
     height: 139px;
     left: 964px;
     top: 104px;
+}
+
+.error-text{
+    color: red;
+    font-style: italic;
+    text-align: center;
 }

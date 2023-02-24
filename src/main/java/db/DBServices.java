@@ -180,6 +180,24 @@ public class DBServices implements IDBServices{
 
     @Override
     public void modifyStudent(String id, String newSurname, String newName, String newGroup, String newDate) {
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            stmt.execute("UPDATE `crm_easyum_33`.`student` SET `surname` = '"+newSurname+"', `name` = '"+newName+"', `group` = '"+newGroup+"', `date` = '"+newDate+"' WHERE (`id` = '"+id+"');");
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -208,12 +226,75 @@ public class DBServices implements IDBServices{
 
     @Override
     public List<Term> getAllActiveTerms() {
-        return null;
+        List<Term> terms = new ArrayList<>();
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.term where status = '1'");
+
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+                //Создать пустой объект
+                Term term = new Term();
+
+                //Достать значение колонки id из SQL
+                term.setId(rs.getInt("id"));
+
+                //Достать значение колонки term из SQL
+                term.setTerm(rs.getString("term"));
+
+                //Достать значение колонки duration из SQL
+                term.setDuration(rs.getString("duration"));
+                terms.add(term);
+
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return terms;
     }
 
     @Override
     public List<Discipline> getDisciplinesByTerm(String idTerm) {
-        return null;
+        List<Discipline> disciplines = new ArrayList<>();
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.term_discipline as td\n" +
+                    "left join discipline as d on td.id_discipline = d.id\n" +
+                    "where d.status = '1' and td.id_term = "+idTerm+"");
+
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+                //Создать пустой объект
+                Discipline discipline = new Discipline();
+                //Достать значение колонки id из SQL
+                discipline.setId(rs.getInt("id_discipline"));
+                //Достать значение колонки discipline из SQL
+                discipline.setDiscipline(rs.getString("discipline"));
+                disciplines.add(discipline);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return disciplines;
     }
 
     @Override
@@ -223,7 +304,42 @@ public class DBServices implements IDBServices{
 
     @Override
     public Term getTermById(String id) {
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.term where status = '1' and id = "+id+"");
+
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+                //Создать пустой объект
+                Term term = new Term();
+
+                //Достать значение колонки id из SQL
+                term.setId(rs.getInt("id"));
+
+                //Достать значение колонки term из SQL
+                term.setTerm(rs.getString("term"));
+
+                //Достать значение колонки duration из SQL
+                term.setDuration(rs.getString("duration"));
+                return term;
+
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
+
     }
 
     @Override
@@ -243,11 +359,71 @@ public class DBServices implements IDBServices{
 
     @Override
     public List<Role> getAllActiveRoles() {
-        return null;
+        List<Role> roles = new ArrayList<>();
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.role;");
+
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+                //Создать пустой объект
+                Role role = new Role();
+
+                //Достать значение колонки id из SQL
+                role.setId(rs.getInt("id"));
+
+                //Достать значение колонки surname из SQL
+                role.setRole(rs.getString("role"));
+
+
+                //Добавляем в каждом цикле while объект discipline в коллекцию disciplines
+                roles.add(role);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return roles;
     }
+
 
     @Override
     public boolean canLogin(String login, String password, String idRole) {
+        //1 Проверка: логин и пароль в user есть
+        //2 Проверка: есть ли у логина такая роль
+        //Две проверки одним запросом
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+
+          ResultSet rs =  stmt.executeQuery("SELECT * FROM crm_easyum_33.role_user as ur\n" +
+                  "left join user as u on ur.id_user = u.id\n" +
+                  "where u.login = '"+login+"' and u.password = '"+password+"' and ur.id_role ="+idRole+"");
+
+            while (rs.next()){
+                return true;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         return false;
     }
 }

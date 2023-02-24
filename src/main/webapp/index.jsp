@@ -1,5 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +42,15 @@
                 </li>
 
                 <li>
-                    <a href="#" class="menu__item menu__item__active reg3">LogOut</a>
+                    <c:choose>
+                        <c:when test="${isLogin eq true}">
+                            <a href="/logout" class="menu__item menu__item__active reg3">LogOut</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/login" class="menu__item menu__item__active reg3">LogIn</a>
+                        </c:otherwise>
+                    </c:choose>
+
                 </li>
             </ul>
             <div class="sqr"></div>
@@ -59,7 +69,7 @@
         </li>
 
         <li>
-            <a href="#" class="text menu__item__active2">Семестры</a>
+            <a href="/termList" class="text menu__item__active2">Семестры</a>
         </li>
     </ul></div>
 </header>
