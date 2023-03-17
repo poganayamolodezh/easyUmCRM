@@ -41,3 +41,16 @@ function modifyStudent(){
     //Нажать кнопку
     document.getElementById("formModify").submit();
 }
+
+function modifyTerm(){
+
+    //Получить значение id семестра из страницы где нажали кнопку
+    var idSelectedTerm = document.querySelector('option[selected]');
+
+    //Заполним value
+    document.getElementById("hiddenModifyTerm").value = idSelectedTerm.value;
+
+    //Нажать кнопку программно типа "отправить"
+    document.getElementById("formModifyTerm").submit();
+
+}

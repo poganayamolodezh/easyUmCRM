@@ -111,13 +111,28 @@
 
     <div style="float:right;">
         <div class="container buttons">
-            <a href="#" class="btn">
-                создать семестр...
-            </a>
-            <a href="#" class="btn">Модифицировать текущий семестр...</a>
+<%--            <a href="#" class="btn">--%>
+<%--                создать семестр...--%>
+<%--            </a>--%>
+<%--            <a href="#" class="btn">Модифицировать текущий семестр...</a>--%>
+    <input type="submit" value="Модифицировать текущий семестр" class ="btn" onclick="modifyTerm()">
+            <c:if test="${role eq 1}">
+                <a href="/term-create"  class="btn">Создать семестр</a>
+            </c:if>
             <a href="#" class="btn">удалить  текущий семестр</a>
+            <c:if test="${status eq 1}">
+                <input type="submit" value="Удалить текущий семестр" class="btn" onclick="deleteTerm()">
+            </c:if>
+
         </div>
     </div>
-
+            <form action="/term-delete" method="post" id="formDelete">
+                <input type="hidden" value= "" name="hiddenDeleteTerm" id="hiddenDeleteTerm">
+            </form>
+            <form action="/term-modify" method="get" id="formModifyTerm">
+                <input type="hidden" value="" name="hiddenModifyTerm" id="hiddenModifyTerm">
+            </form>
 </body>
+<%--Подключаем JS--%>
+<script src="../resources/js/Functions.js"></script>
 </html>

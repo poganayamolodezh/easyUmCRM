@@ -298,7 +298,79 @@ public class DBServices implements IDBServices{
     }
 
     @Override
-    public void createTerm(String duration, String idsDisciplines) {
+    public void createTerm(String duration, String [] idsDisciplines) {
+
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+
+            //Достать из БД последний семестр
+            ResultSet rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.term where id = (select max(id) FROM term)");
+            Term term = new Term();
+            //Наполнить List<Discipline> disciplines
+            while (rs.next()) {
+
+                //Достать значение колонки id из SQL
+                term.setId(rs.getInt("id"));
+
+                //Достать значение колонки term из SQL
+                term.setTerm(rs.getString("term"));
+
+                //Достать значение колонки duration из SQL
+                term.setDuration(rs.getString("duration"));
+
+            }
+            //Разрезали слово и цифру {Семестр 9}
+            String[] nameTerm = term.getTerm().split(" ");
+            //Достанем цифру
+            String x = nameTerm[nameTerm.length - 1];
+            int i = Integer.parseInt(x) + 1;
+
+            //Увеличенное число записать стрингом в массив обратно
+            nameTerm[nameTerm.length - 1] = i + "";
+
+            //Собираем массив
+            StringBuffer newTermStr = new StringBuffer();
+            for(String str: nameTerm) {
+                newTermStr.append(str).append(" ");
+            }
+            newTermStr.substring(0, newTermStr.length()-1);
+
+            //Записать новый семестр в БД, чтобы получить id нового семестра
+            stmt.execute("INSERT INTO `crm_easyum_33`.`term` (`term`, `duration`) VALUES ('"+newTermStr+"', '"+duration+"');");
+
+            //Достать id нового семестра
+            rs = stmt.executeQuery("SELECT * FROM crm_easyum_33.term where term = '"+newTermStr+"'");
+
+            //Достаем всю строку и формируем объект с полями
+            while (rs.next()) {
+
+                //Достать значение колонки id из SQL
+                term.setId(rs.getInt("id"));
+
+                //Достать значение колонки term из SQL
+                term.setTerm(rs.getString("term"));
+
+                //Достать значение колонки duration из SQL
+                term.setDuration(rs.getString("duration"));
+
+            }
+
+            //Создать записи о соответствии нового семестра и дисциплин
+            for(String id_discipline: idsDisciplines)
+            stmt.execute("INSERT INTO `crm_easyum_33`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('"+term.getId()+"', '"+id_discipline+"');");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -349,6 +421,24 @@ public class DBServices implements IDBServices{
 
     @Override
     public void deleteTerm(String id) {
+        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //Указать путь к схеме БД, логин и пароль
+            Connection conn = DriverManager.getConnection(Constants.URL_TO_DB, Constants.LOGIN_TO_DB, Constants.PASSWORD_TO_DB);
+
+            //Statement
+            Statement stmt = conn.createStatement();
+
+            stmt.execute("UPDATE `crm_easyum_33`.`term` SET `status` = '0' WHERE (`id` = '"+id+"');\n");
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
